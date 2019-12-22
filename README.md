@@ -24,7 +24,7 @@ cd awtk; scons; cd -
 编译AWTK-MINIJVM
 
 ```
-cd awtk_gui/c/;make
+cd awtk_gui/c/;make clean;make
 ```
 
 
