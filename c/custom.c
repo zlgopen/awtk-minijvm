@@ -23,3 +23,24 @@ int awtk_TWidget_widget_foreach(Runtime *runtime, JClass *clazz) {
   return 0;
 }
 
+int awtk_AWTK_init(Runtime *runtime, JClass *clazz) {
+  jni_ctx_t ctx = jni_ctx_init(runtime, clazz);
+
+  uint32_t w = (uint32_t)jni_ctx_get_int(&ctx);
+  uint32_t h = (uint32_t)jni_ctx_get_int(&ctx);
+
+  ret_t ret = tk_init(w, h, APP_SIMULATOR, "AWTK-JAVA", NULL);
+  
+  jni_ctx_return_int(&ctx, (int32_t)(ret));
+
+  return 0;
+}
+
+int awtk_AWTK_run(Runtime *runtime, JClass *clazz) {
+  jni_ctx_t ctx = jni_ctx_init(runtime, clazz);
+
+  ret_t ret = tk_run();
+  jni_ctx_return_int(&ctx, (int32_t)(ret));
+
+  return 0;
+}

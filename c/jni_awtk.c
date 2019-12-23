@@ -15942,7 +15942,9 @@ int awtk_TDialog_dialog_t_get_prop_highlight(Runtime *runtime, JClass *clazz) {
 }
 
 
-static java_native_method method_nutil_table[] = {
+static java_native_method s_metho_awtk_table[] = {
+{"awtk/AWTK",  "init",  "(III)I",  awtk_AWTK_init},
+{"awtk/AWTK",  "run",  "()I",  awtk_AWTK_run},
 
 {"awtk/TEvent",  "event_cast",  "(J)J",  awtk_TEvent_event_cast},
 {"awtk/TEvent",  "event_create",  "(I)J",  awtk_TEvent_event_create},
@@ -17556,9 +17558,13 @@ static java_native_method method_nutil_table[] = {
 };
 
 s32 count_AwtkFuncTable() {
-  return sizeof(method_nutil_table) / sizeof(method_nutil_table[0]);
+  return sizeof(s_metho_awtk_table) / sizeof(s_metho_awtk_table[0]);
 }
 
 __refer ptr_AwtkFuncTable() {
-  return &method_nutil_table[0];
+  return &s_metho_awtk_table[0];
+}
+
+void JNI_OnLoad(JniEnv *env) {
+  env->native_reg_lib(ptr_AwtkFuncTable(), count_AwtkFuncTable());
 }

@@ -22,7 +22,7 @@ set(AWTK_LIBS
   awtk extwidgets widgets base gpinyin tkc linebreak nanovg SDL2 glad stdc++ pthread m dl
   )
 
-add_library(gui SHARED ${SOURCE_FILES})
+add_library(awtk-jni SHARED ${SOURCE_FILES})
 
 
 #find_package(OpenGL REQUIRED)
@@ -43,14 +43,14 @@ IF (APPLE)
     find_library(COREFOUNDATION_LIB CoreFoundation)
     find_library(COREVIDEO_LIB CoreVideo)
     SET(EXTRA_LIBS ${COCOA_LIB} ${IOKIT_LIB} ${OPENGL_LIB} ${COREFOUNDATION_LIB} ${COREVIDEO_LIB} ${AWTK_LIBS})
-    TARGET_LINK_DIRECTORIES(gui PUBLIC ${AWTK_LIB_DIR})
-    TARGET_LINK_LIBRARIES(gui ${EXTRA_LIBS})
+    TARGET_LINK_DIRECTORIES(awtk-jni PUBLIC ${AWTK_LIB_DIR})
+    TARGET_LINK_LIBRARIES(awtk-jni ${EXTRA_LIBS})
     SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../../../binary/macos)
 
 ELSEIF (UNIX)
     MESSAGE("linux os here.")
-    TARGET_LINK_LIBRARIES(gui ${AWTK_LIBS})
-    TARGET_LINK_LIBRARIES(gui X11 Xi pthread Xcursor Xrandr GL Xinerama)
+    TARGET_LINK_LIBRARIES(awtk-jni ${AWTK_LIBS})
+    TARGET_LINK_LIBRARIES(awtk-jni X11 Xi pthread Xcursor Xrandr GL Xinerama)
     SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../../../binary/centos_x64)
 ELSEIF (MINGW)
     IF (CMAKE_SIZEOF_VOID_P EQUAL 4)
@@ -60,7 +60,7 @@ ELSEIF (MINGW)
         message("64bit")
         SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../../../binary/win_x64)
     endif ()
-    TARGET_LINK_LIBRARIES(gui ${AWTK_LIBS})
+    TARGET_LINK_LIBRARIES(awtk-jni ${AWTK_LIBS})
     set(CMAKE_EXE_LINKER_FLAGS "-mwindows")
 ENDIF ()
 
