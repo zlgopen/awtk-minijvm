@@ -22,7 +22,7 @@ set(SOURCE_FILES
 set(AWTK_LIBS
   awtk extwidgets widgets base gpinyin tkc linebreak nanovg SDL2 glad stdc++ pthread m dl
   )
-
+link_directories( "../../awtk/lib/" "/usr/local/lib/" )
 add_library(awtk-jni SHARED ${SOURCE_FILES})
 
 
@@ -51,7 +51,7 @@ IF (APPLE)
 ELSEIF (UNIX)
     MESSAGE("linux os here.")
     TARGET_LINK_LIBRARIES(awtk-jni ${AWTK_LIBS})
-    TARGET_LINK_LIBRARIES(awtk-jni X11 Xi pthread Xcursor Xrandr GL Xinerama)
+    TARGET_LINK_LIBRARIES(awtk-jni X11 Xi pthread Xcursor Xrandr GL Xinerama Xext sndio gdk-3 gtk-3)
     SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../../../binary/centos_x64)
 ELSEIF (MINGW)
     IF (CMAKE_SIZEOF_VOID_P EQUAL 4)
