@@ -1,12 +1,6 @@
 import awtk.*;
 
 class DemoButton {
-  static {
-    System.out.println("loadLibrary");
-    System.loadLibrary("awtk-jni");
-    System.out.println("loadLibrary done");
-  }
-
   public static void init(String[] args) {
     int w = 320;
     int h = 480;
@@ -19,7 +13,7 @@ class DemoButton {
       h = Integer.parseInt(args[1]);
     }
 
-    AWTK.init(w, h, TAppType.SIMULATOR.value());
+    AWTK.init(w, h, TAppType.SIMULATOR);
   }
 
   public static void createUI() {
@@ -41,12 +35,14 @@ class DemoButton {
   }
 
   public static void main(String[] args) {
-    System.out.println("main");
-
     DemoButton.init(args);
     DemoButton.createUI();
 
     AWTK.run();
+  }
+
+  static {
+    System.loadLibrary("awtk-jni");
   }
 
 }

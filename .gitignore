@@ -4,3 +4,4 @@
 *.so
 build
 java/target
+demos/target
