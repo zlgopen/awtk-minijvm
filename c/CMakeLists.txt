@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(awtk_gui)
 
 INCLUDE_DIRECTORIES(
+  ../
   ../../../minijvm/c/jvm
   ../../awtk/
   ../../awtk/3rd/
