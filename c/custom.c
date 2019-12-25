@@ -1,8 +1,20 @@
 #define WITH_FS_RES 1
 
-static jobject jobject_ref(JNIEnv *env, jobject obj) { return obj; }
+static jobject jobject_ref(Runtime *runtime, jobject obj) {
+  JniEnv *env = runtime->jnienv;
 
-static void jobject_unref(JNIEnv *env, jobject obj) { return; }
+  if (obj) {
+    env->instance_release_from_thread(obj, runtime);
+  }
+  env->instance_hold_to_thread(obj, runtime);
+
+  return obj;
+}
+
+static void jobject_unref(Runtime *runtime, jobject obj) {
+  JniEnv *env = runtime->jnienv;
+  env->instance_release_from_thread(obj, runtime);
+}
 
 typedef struct _async_callback_info_t {
   jobject obj;
@@ -17,13 +29,14 @@ async_callback_info_create(Runtime *runtime, jobject obj, const char *name) {
   return_value_if_fail(info != NULL, NULL);
 
   info->runtime = runtime;
-  info->obj = jobject_ref(env, obj);
+  info->obj = jobject_ref(runtime, obj);
   tk_strncpy(info->func, name, TK_NAME_LEN);
 
   return info;
 }
 
 static int async_callback_info_call(async_callback_info_t *info, void *data) {
+  ret_t ret = RET_OK;
   Runtime *runtime = info->runtime;
   JniEnv *env = info->runtime->jnienv;
 
@@ -40,14 +53,11 @@ static int async_callback_info_call(async_callback_info_t *info, void *data) {
 
   env->push_ref(runtime->stack, info->obj);
   env->push_long(runtime->stack, (s64)data);
-  s32 ret = env->execute_method(minfo, runtime);
 
-  if (ret) {
+  if (env->execute_method(minfo, runtime)) {
     env->print_exception(runtime);
-    ret = RET_FAIL;
   } else {
-    jni_ctx_t ctx = jni_ctx_init(runtime, NULL);
-    ret = jni_ctx_get_int(&ctx);
+    /*TODO: get the return value*/
   }
 
   log_debug("call %s ret=%d\n", info->func, ret);
@@ -58,7 +68,7 @@ static int async_callback_info_call(async_callback_info_t *info, void *data) {
 static ret_t async_callback_info_destroy(async_callback_info_t *info) {
   return_value_if_fail(info != NULL, RET_BAD_PARAMS);
 
-  jobject_unref(info->runtime->jnienv, info->obj);
+  jobject_unref(info->runtime, info->obj);
   TKMEM_FREE(info);
 
   return RET_OK;
