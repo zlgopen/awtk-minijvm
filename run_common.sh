@@ -10,5 +10,5 @@ OPTIONS="-Djava.library.path " $BIN_DIR"/"$PLATFORM
 
 cp -fv ../../binary/$PLATFORM/libawtk-jni.* .
 
-echo $MINI_JVM $OPTIONS -cp $CLASSPATH DemoBasic
+echo $MINI_JVM $OPTIONS -cp $CLASSPATH DemoButton
 $MINI_JVM $OPTIONS -cp $CLASSPATH DemoBasic

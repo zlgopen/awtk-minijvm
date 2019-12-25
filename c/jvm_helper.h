@@ -1,6 +1,9 @@
 #ifndef JVM_HELPER_H
 #define JVM_HELPER_H
 
+typedef JniEnv JNIEnv;
+typedef Instance* jobject;
+
 typedef struct _jni_ctx_t {
   Runtime *runtime;
   JClass *clazz;
@@ -64,6 +67,14 @@ static inline void *jni_ctx_get_object(jni_ctx_t *ctx) {
   ctx->pos += 2;
 
   return (void *)((char *)NULL + ret);
+}
+
+static inline jobject jni_ctx_get_jobject(jni_ctx_t *ctx) {
+  Runtime *runtime = ctx->runtime;
+  JniEnv *env = runtime->jnienv;
+  jobject ret = env->localvar_getRefer(runtime->localvar, ctx->pos++);
+
+  return ret;
 }
 
 static inline char *jni_ctx_get_str(jni_ctx_t *ctx) {
