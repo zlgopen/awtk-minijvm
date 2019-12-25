@@ -9,7 +9,8 @@ CLASSPATH=$CLASSPATH":"$BIN_DIR/libex/awtk_gui.jar
 CLASSPATH=$CLASSPATH":"$BIN_DIR/libex/awtk_demos.jar
 OPTIONS="-Djava.library.path " $BIN_DIR"/"$PLATFORM
 
-cp -fv cp ../../binary/macos/libawtk-jni.dylib .
-echo $MINI_JVM $OPTIONS -cp $CLASSPATH Main
-$MINI_JVM $OPTIONS -cp $CLASSPATH Main
+cp -fv ../../binary/$PLATFORM/libawtk-jni.* .
+
+echo $MINI_JVM $OPTIONS -cp $CLASSPATH DemoBasic
+$MINI_JVM $OPTIONS -cp $CLASSPATH DemoBasic
 

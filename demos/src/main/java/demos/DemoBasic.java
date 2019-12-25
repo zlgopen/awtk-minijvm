@@ -1,21 +1,6 @@
 import awtk.*;
 
-class DemoUI {
-  public static void init(String[] args) {
-    int w = 320;
-    int h = 480;
-
-    if (args.length > 0) {
-      w = Integer.parseInt(args[0]);
-    }
-
-    if (args.length > 1) {
-      h = Integer.parseInt(args[1]);
-    }
-
-    AWTK.init(w, h, TAppType.SIMULATOR);
-  }
-  
+public class DemoBasic extends App {
   static class OnClicked extends TOnEvent {
     @Override
     public TRet onEvent(TEvent evt) {
@@ -25,7 +10,7 @@ class DemoUI {
       System.out.println(name + " clicked");
       if(name.startsWith("open:")) {
         String winName = name.substring(5);
-        DemoUI.openWindow(winName);
+        DemoBasic.openWindow(winName);
       } else if(name.equals("close")) {
         TWindow.cast(target.getWindow()).close();
       } else if(name.equals("quit")) {
@@ -73,20 +58,14 @@ class DemoUI {
     }
   }
 
-  public static void createUI() {
+  @Override
+  public void createUI() {
     TWindow.open("system_bar");
-    DemoUI.openWindow("main");
+
+    DemoBasic.openWindow("main");
   }
 
   public static void main(String[] args) {
-    DemoUI.init(args);
-    DemoUI.createUI();
-
-    AWTK.run();
+    (new DemoBasic()).start(args);
   }
-
-  static {
-    System.loadLibrary("awtk-jni");
-  }
-
 }
