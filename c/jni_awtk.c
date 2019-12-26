@@ -4156,6 +4156,18 @@ int awtk_TVgcanvas_vgcanvas_close_path(Runtime *runtime, JClass *clazz) {
   return 0;
 }
 
+int awtk_TVgcanvas_vgcanvas_path_winding(Runtime *runtime, JClass *clazz) {
+  jni_ctx_t ctx = jni_ctx_init(runtime, clazz);
+
+  ret_t ret = 0;
+  vgcanvas_t *vg = (vgcanvas_t *)jni_ctx_get_object(&ctx);
+  bool_t dir = (bool_t)jni_ctx_get_int(&ctx);
+  ret = (ret_t)vgcanvas_path_winding(vg, dir);
+  jni_ctx_return_int(&ctx, (int32_t)(ret));
+
+  return 0;
+}
+
 int awtk_TVgcanvas_vgcanvas_rotate(Runtime *runtime, JClass *clazz) {
   jni_ctx_t ctx = jni_ctx_init(runtime, clazz);
 
@@ -6390,6 +6402,17 @@ int awtk_TWidget_widget_index_of(Runtime *runtime, JClass *clazz) {
   int32_t ret = 0;
   widget_t *widget = (widget_t *)jni_ctx_get_object(&ctx);
   ret = (int32_t)widget_index_of(widget);
+  jni_ctx_return_int(&ctx, (int32_t)(ret));
+
+  return 0;
+}
+
+int awtk_TWidget_widget_close_window(Runtime *runtime, JClass *clazz) {
+  jni_ctx_t ctx = jni_ctx_init(runtime, clazz);
+
+  ret_t ret = 0;
+  widget_t *widget = (widget_t *)jni_ctx_get_object(&ctx);
+  ret = (ret_t)widget_close_window(widget);
   jni_ctx_return_int(&ctx, (int32_t)(ret));
 
   return 0;
@@ -17100,6 +17123,8 @@ static java_native_method s_metho_awtk_table[] = {
      awtk_TVgcanvas_vgcanvas_ellipse},
     {"awtk/TVgcanvas", "vgcanvas_close_path", "(J)I",
      awtk_TVgcanvas_vgcanvas_close_path},
+    {"awtk/TVgcanvas", "vgcanvas_path_winding", "(JZ)I",
+     awtk_TVgcanvas_vgcanvas_path_winding},
     {"awtk/TVgcanvas", "vgcanvas_rotate", "(JF)I",
      awtk_TVgcanvas_vgcanvas_rotate},
     {"awtk/TVgcanvas", "vgcanvas_scale", "(JFF)I",
@@ -17601,6 +17626,8 @@ static java_native_method s_metho_awtk_table[] = {
     {"awtk/TWidget", "widget_get_child", "(JI)J",
      awtk_TWidget_widget_get_child},
     {"awtk/TWidget", "widget_index_of", "(J)I", awtk_TWidget_widget_index_of},
+    {"awtk/TWidget", "widget_close_window", "(J)I",
+     awtk_TWidget_widget_close_window},
     {"awtk/TWidget", "widget_move", "(JII)I", awtk_TWidget_widget_move},
     {"awtk/TWidget", "widget_resize", "(JII)I", awtk_TWidget_widget_resize},
     {"awtk/TWidget", "widget_move_resize", "(JIIII)I",
