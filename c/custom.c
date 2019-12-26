@@ -57,7 +57,7 @@ static int async_callback_info_call(async_callback_info_t *info, void *data) {
   if (env->execute_method(minfo, runtime)) {
     env->print_exception(runtime);
   } else {
-    /*TODO: get the return value*/
+    ret = env->pop_int(runtime->stack);
   }
 
   log_debug("call %s ret=%d\n", info->func, ret);
