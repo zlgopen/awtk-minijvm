@@ -24,7 +24,7 @@ set(AWTK_LIBS
   )
 link_directories( "../../awtk/lib/" "/usr/local/lib/" )
 add_library(awtk-jni SHARED ${SOURCE_FILES})
-
+add_compile_definitions(WITH_FS)
 
 #find_package(OpenGL REQUIRED)
 MESSAGE(STATUS "CMAKE_SYSTEM :${CMAKE_SYSTEM}")
