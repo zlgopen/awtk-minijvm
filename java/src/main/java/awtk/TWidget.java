@@ -64,6 +64,17 @@ public class TWidget {
 
 
   /**
+   * 获取原生窗口对象。
+   * 
+   *
+   * @return 原生窗口对象。
+   */
+ public  TNativeWindow getNativeWindow()  {
+    return new TNativeWindow(widget_get_native_window(this != null ? (this.nativeObj) : 0));
+ }
+
+
+  /**
    * 获取控件在父控件中的索引编号。
    * 
    *
@@ -192,6 +203,35 @@ public class TWidget {
 
 
   /**
+   * 设置子控件的文本。
+   *只是对widget\_set\_prop的包装，文本的意义由子类控件决定。
+   * 
+   * @param name 子控件的名称。
+   * @param text 文本。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setChildText(String name, String text)  {
+   return TRet.from(widget_set_child_text_utf8(this != null ? (this.nativeObj) : 0, name, text));
+ }
+
+
+  /**
+   * 用一个浮点数去设置子控件的文本。
+   *只是对widget\_set\_prop的包装，文本的意义由子类控件决定。
+   * 
+   * @param name 子控件的名称。
+   * @param format 格式字符串(如："%2.2lf")。
+   * @param value 浮点数值。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setChildTextWithDouble(String name, String format, double value)  {
+   return TRet.from(widget_set_child_text_with_double(this != null ? (this.nativeObj) : 0, name, format, value));
+ }
+
+
+  /**
    * 获取翻译之后的文本，然后调用widget_set_text。
    * 
    * @param text 文本。
@@ -215,8 +255,12 @@ public class TWidget {
 
 
   /**
-   * 获取控件的文本。
-   *只是对widget\_get\_prop的包装，文本的意义由子类控件决定。
+   * str_t str;
+   *str_init(&str, 0);
+   *str_from_wstr(&str, widget_get_text(target));
+   *log_debug("%s: %s\n", target->name, str.str);
+   *str_reset(&str);
+   *```
    * 
    *
    * @return 返回文本。
@@ -1072,6 +1116,15 @@ public class TWidget {
 
 
   /**
+   * 鼠标光标图片名称。
+   *
+   */
+ public String getPointerCursor() {
+   return widget_t_get_prop_pointer_cursor(this.nativeObj);
+ }
+
+
+  /**
    * 保存用于翻译的字符串。
    *
    */
@@ -1183,6 +1236,7 @@ public class TWidget {
 
 static private native int widget_count_children(long widget);
 static private native long widget_get_child(long widget, int index);
+static private native long widget_get_native_window(long widget);
 static private native int widget_index_of(long widget);
 static private native int widget_close_window(long widget);
 static private native int widget_move(long widget, int x, int y);
@@ -1193,6 +1247,8 @@ static private native int widget_animate_value_to(long widget, int value, int du
 static private native int widget_add_value(long widget, int delta);
 static private native int widget_use_style(long widget, String style);
 static private native int widget_set_text_utf8(long widget, String text);
+static private native int widget_set_child_text_utf8(long widget, String name, String text);
+static private native int widget_set_child_text_with_double(long widget, String name, String format, double value);
 static private native int widget_set_tr_text(long widget, String text);
 static private native int widget_get_value(long widget);
 static private native long widget_get_text(long widget);
@@ -1264,6 +1320,7 @@ static private native int widget_t_get_prop_y(long nativeObj);
 static private native int widget_t_get_prop_w(long nativeObj);
 static private native int widget_t_get_prop_h(long nativeObj);
 static private native String widget_t_get_prop_name(long nativeObj);
+static private native String widget_t_get_prop_pointer_cursor(long nativeObj);
 static private native String widget_t_get_prop_tr_text(long nativeObj);
 static private native String widget_t_get_prop_style(long nativeObj);
 static private native String widget_t_get_prop_animation(long nativeObj);

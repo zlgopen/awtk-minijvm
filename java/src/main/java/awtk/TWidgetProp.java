@@ -45,6 +45,20 @@ public enum TWidgetProp {
   H (WIDGET_PROP_H()),
   
   /**
+   * caret x。
+   *
+   */
+ 
+  CARET_X (WIDGET_PROP_CARET_X()),
+  
+  /**
+   * caret y。
+   *
+   */
+ 
+  CARET_Y (WIDGET_PROP_CARET_Y()),
+  
+  /**
    * 脏矩形超出控件本身大小的最大范围。
    *
    */
@@ -182,7 +196,7 @@ public enum TWidgetProp {
    *
    */
  
-  CURSOR (WIDGET_PROP_CURSOR()),
+  POINTER_CURSOR (WIDGET_PROP_POINTER_CURSOR()),
   
   /**
    * 值。
@@ -325,14 +339,21 @@ public enum TWidgetProp {
   FULLSCREEN (WIDGET_PROP_FULLSCREEN()),
   
   /**
-   * 打开窗口动画。
+   * 禁用窗口动画。
+   *
+   */
+ 
+  DISABLE_ANIM (WIDGET_PROP_DISABLE_ANIM()),
+  
+  /**
+   * 打开窗口时的动画。
    *
    */
  
   OPEN_ANIM_HINT (WIDGET_PROP_OPEN_ANIM_HINT()),
   
   /**
-   * 关闭窗口动画。
+   * 关闭窗口时的动画。
    *
    */
  
@@ -346,6 +367,13 @@ public enum TWidgetProp {
   MIN (WIDGET_PROP_MIN()),
   
   /**
+   * 软键盘上action按钮的文本。
+   *
+   */
+ 
+  ACTION_TEXT (WIDGET_PROP_ACTION_TEXT()),
+  
+  /**
    * 提示信息。
    *
    */
@@ -353,11 +381,32 @@ public enum TWidgetProp {
   TIPS (WIDGET_PROP_TIPS()),
   
   /**
+   * 需要翻译的提示信息。
+   *
+   */
+ 
+  TR_TIPS (WIDGET_PROP_TR_TIPS()),
+  
+  /**
    * 输入类型。
    *
    */
  
   INPUT_TYPE (WIDGET_PROP_INPUT_TYPE()),
+  
+  /**
+   * 自定义软键盘资源名称。
+   *
+   */
+ 
+  KEYBOARD (WIDGET_PROP_KEYBOARD()),
+  
+  /**
+   * 缺省获得焦点的子控件(可用控件名或类型)。
+   *
+   */
+ 
+  DEFAULT_FOCUSED_CHILD (WIDGET_PROP_DEFAULT_FOCUSED_CHILD()),
   
   /**
    * 只读模式。
@@ -929,6 +978,8 @@ public enum TWidgetProp {
   static private native String WIDGET_PROP_Y();
   static private native String WIDGET_PROP_W();
   static private native String WIDGET_PROP_H();
+  static private native String WIDGET_PROP_CARET_X();
+  static private native String WIDGET_PROP_CARET_Y();
   static private native String WIDGET_PROP_DIRTY_RECT_TOLERANCE();
   static private native String WIDGET_PROP_CANVAS();
   static private native String WIDGET_PROP_LOCALIZE_OPTIONS();
@@ -948,7 +999,7 @@ public enum TWidgetProp {
   static private native String WIDGET_PROP_NAME();
   static private native String WIDGET_PROP_TYPE();
   static private native String WIDGET_PROP_CLOSABLE();
-  static private native String WIDGET_PROP_CURSOR();
+  static private native String WIDGET_PROP_POINTER_CURSOR();
   static private native String WIDGET_PROP_VALUE();
   static private native String WIDGET_PROP_LENGTH();
   static private native String WIDGET_PROP_TEXT();
@@ -969,11 +1020,16 @@ public enum TWidgetProp {
   static private native String WIDGET_PROP_ANIMATION();
   static private native String WIDGET_PROP_ANIM_HINT();
   static private native String WIDGET_PROP_FULLSCREEN();
+  static private native String WIDGET_PROP_DISABLE_ANIM();
   static private native String WIDGET_PROP_OPEN_ANIM_HINT();
   static private native String WIDGET_PROP_CLOSE_ANIM_HINT();
   static private native String WIDGET_PROP_MIN();
+  static private native String WIDGET_PROP_ACTION_TEXT();
   static private native String WIDGET_PROP_TIPS();
+  static private native String WIDGET_PROP_TR_TIPS();
   static private native String WIDGET_PROP_INPUT_TYPE();
+  static private native String WIDGET_PROP_KEYBOARD();
+  static private native String WIDGET_PROP_DEFAULT_FOCUSED_CHILD();
   static private native String WIDGET_PROP_READONLY();
   static private native String WIDGET_PROP_PASSWORD_VISIBLE();
   static private native String WIDGET_PROP_ACTIVE();

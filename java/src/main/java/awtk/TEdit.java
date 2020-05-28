@@ -256,14 +256,50 @@ public class TEdit extends TWidget {
 
 
   /**
+   * 设置软键盘上action按钮的文本。
+   * 
+   * @param action_text 软键盘上action按钮的文本。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setActionText(String action_text)  {
+   return TRet.from(edit_set_action_text(this != null ? (this.nativeObj) : 0, action_text));
+ }
+
+
+  /**
    * 设置编辑器的输入提示。
    * 
    * @param tips 输入提示。
    *
    * @return 返回RET_OK表示成功，否则表示失败。
    */
- public  TRet setInputTips(String tips)  {
-   return TRet.from(edit_set_input_tips(this != null ? (this.nativeObj) : 0, tips));
+ public  TRet setTips(String tips)  {
+   return TRet.from(edit_set_tips(this != null ? (this.nativeObj) : 0, tips));
+ }
+
+
+  /**
+   * 获取翻译之后的文本，然后调用edit_set_tips。
+   * 
+   * @param tr_tips 提示信息。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setTrTips(String tr_tips)  {
+   return TRet.from(edit_set_tr_tips(this != null ? (this.nativeObj) : 0, tr_tips));
+ }
+
+
+  /**
+   * 设置自定义软键盘名称。
+   * 
+   * @param keyboard 键盘名称(相应UI资源必须存在)。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setKeyboard(String keyboard)  {
+   return TRet.from(edit_set_keyboard(this != null ? (this.nativeObj) : 0, keyboard));
  }
 
 
@@ -353,11 +389,79 @@ public class TEdit extends TWidget {
 
 
   /**
+   * 上边距。
+   *
+   */
+ public int getTopMargin() {
+   return edit_t_get_prop_top_margin(this.nativeObj);
+ }
+
+
+  /**
+   * 下边距。
+   *
+   */
+ public int getBottomMargin() {
+   return edit_t_get_prop_bottom_margin(this.nativeObj);
+ }
+
+
+  /**
+   * 左边距。
+   *
+   */
+ public int getLeftMargin() {
+   return edit_t_get_prop_left_margin(this.nativeObj);
+ }
+
+
+  /**
+   * 右边距。
+   *
+   */
+ public int getRightMargin() {
+   return edit_t_get_prop_right_margin(this.nativeObj);
+ }
+
+
+  /**
    * 输入提示。
    *
    */
  public String getTips() {
    return edit_t_get_prop_tips(this.nativeObj);
+ }
+
+
+  /**
+   * 保存用于翻译的提示信息。
+   *
+   */
+ public String getTrTips() {
+   return edit_t_get_prop_tr_tips(this.nativeObj);
+ }
+
+
+  /**
+   * 软键盘上action按钮的文本。内置取值有：
+   *
+   ** next 将焦点切换到下一个控件。
+   ** done 完成，关闭软键盘。
+   *
+   *也可以使用其它文本，比如send表示发送。这个需要自己实现相应的功能，处理EVT\_IM\_ACTION事件即可。
+   *
+   */
+ public String getActionText() {
+   return edit_t_get_prop_action_text(this.nativeObj);
+ }
+
+
+  /**
+   * 自定义软键盘名称。
+   *
+   */
+ public String getKeyboard() {
+   return edit_t_get_prop_keyboard(this.nativeObj);
  }
 
 
@@ -412,7 +516,10 @@ static private native int edit_set_auto_fix(long widget, boolean auto_fix);
 static private native int edit_set_select_none_when_focused(long widget, boolean select_none_when_focused);
 static private native int edit_set_open_im_when_focused(long widget, boolean open_im_when_focused);
 static private native int edit_set_input_type(long widget, int type);
-static private native int edit_set_input_tips(long widget, String tips);
+static private native int edit_set_action_text(long widget, String action_text);
+static private native int edit_set_tips(long widget, String tips);
+static private native int edit_set_tr_tips(long widget, String tr_tips);
+static private native int edit_set_keyboard(long widget, String keyboard);
 static private native int edit_set_password_visible(long widget, boolean password_visible);
 static private native int edit_set_focus(long widget, boolean focus);
 static private native int edit_set_cursor(long widget, int cursor);
@@ -421,7 +528,14 @@ static private native boolean edit_t_get_prop_password_visible(long nativeObj);
 static private native boolean edit_t_get_prop_auto_fix(long nativeObj);
 static private native boolean edit_t_get_prop_select_none_when_focused(long nativeObj);
 static private native boolean edit_t_get_prop_open_im_when_focused(long nativeObj);
+static private native int edit_t_get_prop_top_margin(long nativeObj);
+static private native int edit_t_get_prop_bottom_margin(long nativeObj);
+static private native int edit_t_get_prop_left_margin(long nativeObj);
+static private native int edit_t_get_prop_right_margin(long nativeObj);
 static private native String edit_t_get_prop_tips(long nativeObj);
+static private native String edit_t_get_prop_tr_tips(long nativeObj);
+static private native String edit_t_get_prop_action_text(long nativeObj);
+static private native String edit_t_get_prop_keyboard(long nativeObj);
 static private native int edit_t_get_prop_input_type(long nativeObj);
 static private native double edit_t_get_prop_min(long nativeObj);
 static private native double edit_t_get_prop_max(long nativeObj);

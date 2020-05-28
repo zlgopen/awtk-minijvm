@@ -121,8 +121,32 @@ public class TMledit extends TWidget {
    *
    * @return 返回RET_OK表示成功，否则表示失败。
    */
- public  TRet setInputTips(String tips)  {
-   return TRet.from(mledit_set_input_tips(this != null ? (this.nativeObj) : 0, tips));
+ public  TRet setTips(String tips)  {
+   return TRet.from(mledit_set_tips(this != null ? (this.nativeObj) : 0, tips));
+ }
+
+
+  /**
+   * 获取翻译之后的文本，然后调用mledit_set_tips。
+   * 
+   * @param tr_tips 提示信息。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setTrTips(String tr_tips)  {
+   return TRet.from(mledit_set_tr_tips(this != null ? (this.nativeObj) : 0, tr_tips));
+ }
+
+
+  /**
+   * 设置自定义软键盘名称。
+   * 
+   * @param keyboard 键盘名称(相应UI资源必须存在)。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setKeyboard(String keyboard)  {
+   return TRet.from(mledit_set_keyboard(this != null ? (this.nativeObj) : 0, keyboard));
  }
 
 
@@ -172,11 +196,65 @@ public class TMledit extends TWidget {
 
 
   /**
+   * 上边距。
+   *
+   */
+ public int getTopMargin() {
+   return mledit_t_get_prop_top_margin(this.nativeObj);
+ }
+
+
+  /**
+   * 下边距。
+   *
+   */
+ public int getBottomMargin() {
+   return mledit_t_get_prop_bottom_margin(this.nativeObj);
+ }
+
+
+  /**
+   * 左边距。
+   *
+   */
+ public int getLeftMargin() {
+   return mledit_t_get_prop_left_margin(this.nativeObj);
+ }
+
+
+  /**
+   * 右边距。
+   *
+   */
+ public int getRightMargin() {
+   return mledit_t_get_prop_right_margin(this.nativeObj);
+ }
+
+
+  /**
    * 输入提示。
    *
    */
  public String getTips() {
    return mledit_t_get_prop_tips(this.nativeObj);
+ }
+
+
+  /**
+   * 保存用于翻译的提示信息。
+   *
+   */
+ public String getTrTips() {
+   return mledit_t_get_prop_tr_tips(this.nativeObj);
+ }
+
+
+  /**
+   * 自定义软键盘名称。
+   *
+   */
+ public String getKeyboard() {
+   return mledit_t_get_prop_keyboard(this.nativeObj);
  }
 
 
@@ -202,7 +280,7 @@ public class TMledit extends TWidget {
    * 鼠标一次滚动行数。
    *
    */
- public double getScrollLine() {
+ public int getScrollLine() {
    return mledit_t_get_prop_scroll_line(this.nativeObj);
  }
 
@@ -211,13 +289,21 @@ static private native int mledit_set_readonly(long widget, boolean readonly);
 static private native int mledit_set_focus(long widget, boolean focus);
 static private native int mledit_set_wrap_word(long widget, boolean wrap_word);
 static private native int mledit_set_max_lines(long widget, int max_lines);
-static private native int mledit_set_input_tips(long widget, String tips);
+static private native int mledit_set_tips(long widget, String tips);
+static private native int mledit_set_tr_tips(long widget, String tr_tips);
+static private native int mledit_set_keyboard(long widget, String keyboard);
 static private native int mledit_set_cursor(long widget, int cursor);
 static private native int mledit_set_scroll_line(long widget, int scroll_line);
 static private native long mledit_cast(long widget);
 static private native boolean mledit_t_get_prop_readonly(long nativeObj);
+static private native int mledit_t_get_prop_top_margin(long nativeObj);
+static private native int mledit_t_get_prop_bottom_margin(long nativeObj);
+static private native int mledit_t_get_prop_left_margin(long nativeObj);
+static private native int mledit_t_get_prop_right_margin(long nativeObj);
 static private native String mledit_t_get_prop_tips(long nativeObj);
+static private native String mledit_t_get_prop_tr_tips(long nativeObj);
+static private native String mledit_t_get_prop_keyboard(long nativeObj);
 static private native boolean mledit_t_get_prop_wrap_word(long nativeObj);
 static private native int mledit_t_get_prop_max_lines(long nativeObj);
-static private native double mledit_t_get_prop_scroll_line(long nativeObj);
+static private native int mledit_t_get_prop_scroll_line(long nativeObj);
 };

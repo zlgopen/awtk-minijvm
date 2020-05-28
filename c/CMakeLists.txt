@@ -20,7 +20,7 @@ set(SOURCE_FILES
   )
 
 set(AWTK_LIBS
-  awtk extwidgets widgets base gpinyin tkc linebreak nanovg SDL2 glad stdc++ pthread m dl
+  awtk_global extwidgets widgets base gpinyin tkc linebreak nanovg SDL2 glad stdc++ pthread m dl
   )
 link_directories( "../../awtk/lib/" "/usr/local/lib/" )
 add_library(awtk-jni SHARED ${SOURCE_FILES})

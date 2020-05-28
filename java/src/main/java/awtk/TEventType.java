@@ -52,14 +52,14 @@ public enum TEventType {
   POINTER_UP_BEFORE_CHILDREN (EVT_POINTER_UP_BEFORE_CHILDREN()),
   
   /**
-   * 滚轮事件名(pointer_event_t)。
+   * 滚轮事件名(wheel_event_t)。
    *
    */
  
   WHEEL (EVT_WHEEL()),
   
   /**
-   * 鼠标滚轮事件名，在子控件处理之前触发(key_event_t)。
+   * 鼠标滚轮事件名，在子控件处理之前触发(wheel_event_t)。
    *
    */
  
@@ -364,11 +364,46 @@ public enum TEventType {
   IM_COMMIT (EVT_IM_COMMIT()),
   
   /**
+   * 进入预编辑状态(event_t)。
+   *
+   */
+ 
+  IM_PREEDIT (EVT_IM_PREEDIT()),
+  
+  /**
+   * 确认预编辑内容，退出预编辑状态(event_t)。
+   *
+   */
+ 
+  IM_PREEDIT_CONFIRM (EVT_IM_PREEDIT_CONFIRM()),
+  
+  /**
+   * 删除预编辑内容，退出预编辑状态event_t)。
+   *
+   */
+ 
+  IM_PREEDIT_ABORT (EVT_IM_PREEDIT_ABORT()),
+  
+  /**
    * 输入法请求显示候选字事件(im_candidates_event_t)。
    *
    */
  
   IM_SHOW_CANDIDATES (EVT_IM_SHOW_CANDIDATES()),
+  
+  /**
+   * 输入法请求显示预候选字事件(im_candidates_event_t)。
+   *
+   */
+ 
+  IM_SHOW_PRE_CANDIDATES (EVT_IM_SHOW_PRE_CANDIDATES()),
+  
+  /**
+   * 输入法语言改变事件(event_t)。
+   *
+   */
+ 
+  IM_LANG_CHANGED (EVT_IM_LANG_CHANGED()),
   
   /**
    * 软键盘Action点击事件(event_t)。
@@ -540,11 +575,18 @@ public enum TEventType {
   PROGRESS (EVT_PROGRESS()),
   
   /**
-   * 完成(event_t)。
+   * 完成(done_event_t)。
    *
    */
  
   DONE (EVT_DONE()),
+  
+  /**
+   * 错误(error_event_t)。
+   *
+   */
+ 
+  ERROR (EVT_ERROR()),
   
   /**
    * 对象销毁事件名(event_t)。
@@ -636,7 +678,12 @@ public enum TEventType {
   static private native int EVT_REQUEST_CLOSE_WINDOW();
   static private native int EVT_TOP_WINDOW_CHANGED();
   static private native int EVT_IM_COMMIT();
+  static private native int EVT_IM_PREEDIT();
+  static private native int EVT_IM_PREEDIT_CONFIRM();
+  static private native int EVT_IM_PREEDIT_ABORT();
   static private native int EVT_IM_SHOW_CANDIDATES();
+  static private native int EVT_IM_SHOW_PRE_CANDIDATES();
+  static private native int EVT_IM_LANG_CHANGED();
   static private native int EVT_IM_ACTION();
   static private native int EVT_IM_ACTION_INFO();
   static private native int EVT_DRAG_START();
@@ -662,6 +709,7 @@ public enum TEventType {
   static private native int EVT_PROPS_CHANGED();
   static private native int EVT_PROGRESS();
   static private native int EVT_DONE();
+  static private native int EVT_ERROR();
   static private native int EVT_DESTROY();
 
 }
