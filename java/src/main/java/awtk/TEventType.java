@@ -441,6 +441,13 @@ public enum TEventType {
   DRAG_END (EVT_DRAG_END()),
   
   /**
+   * Reset(event_t)。
+   *
+   */
+ 
+  RESET (EVT_RESET()),
+  
+  /**
    * 在指定的时间内(WITH_SCREEN_SAVER_TIME)，没有用户输入事件，由窗口管理器触发。
    *
    */
@@ -512,6 +519,27 @@ public enum TEventType {
   WIDGET_REMOVE_CHILD (EVT_WIDGET_REMOVE_CHILD()),
   
   /**
+   * scroll view开始滚动(event_t)。
+   *
+   */
+ 
+  SCROLL_START (EVT_SCROLL_START()),
+  
+  /**
+   * scroll view滚动(event_t)。
+   *
+   */
+ 
+  SCROLL (EVT_SCROLL()),
+  
+  /**
+   * scroll view结束滚动(event_t)。
+   *
+   */
+ 
+  SCROLL_END (EVT_SCROLL_END()),
+  
+  /**
    * event queue其它请求编号起始值。
    *
    */
@@ -545,6 +573,27 @@ public enum TEventType {
    */
  
   PROP_CHANGED (EVT_PROP_CHANGED()),
+  
+  /**
+   * 对象即将执行命令(cmd_exec_event_t)。
+   *
+   */
+ 
+  CMD_WILL_EXEC (EVT_CMD_WILL_EXEC()),
+  
+  /**
+   * 对象完成执行命令(cmd_exec_event_t)。
+   *
+   */
+ 
+  CMD_EXECED (EVT_CMD_EXECED()),
+  
+  /**
+   * 对象命令是否能执行指定的命令(cmd_exec_event_t)。
+   *
+   */
+ 
+  CMD_CAN_EXEC (EVT_CMD_CAN_EXEC()),
   
   /**
    * 即将增加和删除集合中的项目(event_t)。
@@ -689,6 +738,7 @@ public enum TEventType {
   static private native int EVT_DRAG_START();
   static private native int EVT_DRAG();
   static private native int EVT_DRAG_END();
+  static private native int EVT_RESET();
   static private native int EVT_SCREEN_SAVER();
   static private native int EVT_LOW_MEMORY();
   static private native int EVT_OUT_OF_MEMORY();
@@ -699,11 +749,17 @@ public enum TEventType {
   static private native int EVT_THEME_CHANGED();
   static private native int EVT_WIDGET_ADD_CHILD();
   static private native int EVT_WIDGET_REMOVE_CHILD();
+  static private native int EVT_SCROLL_START();
+  static private native int EVT_SCROLL();
+  static private native int EVT_SCROLL_END();
   static private native int EVT_REQ_START();
   static private native int EVT_USER_START();
   static private native int EVT_NONE();
   static private native int EVT_PROP_WILL_CHANGE();
   static private native int EVT_PROP_CHANGED();
+  static private native int EVT_CMD_WILL_EXEC();
+  static private native int EVT_CMD_EXECED();
+  static private native int EVT_CMD_CAN_EXEC();
   static private native int EVT_ITEMS_WILL_CHANGE();
   static private native int EVT_ITEMS_CHANGED();
   static private native int EVT_PROPS_CHANGED();

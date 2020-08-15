@@ -4,7 +4,6 @@ package awtk;
 /**
  * 单行编辑器控件。
  *
- *在基于SDL的平台，单行编辑器控件使用平台原生的输入法，对于嵌入式平台使用内置的输入法。
  *
  *在使用内置的输入法时，软键盘由输入类型决定，开发者可以自定义软键盘的界面。
  *
@@ -457,7 +456,6 @@ public class TEdit extends TWidget {
 
 
   /**
-   * 自定义软键盘名称。
    *
    */
  public String getKeyboard() {

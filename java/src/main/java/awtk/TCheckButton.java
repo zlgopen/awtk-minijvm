@@ -83,7 +83,7 @@ public class TCheckButton extends TWidget {
    * @param w 宽度
    * @param h 高度
    *
-   * @return 对象。
+   * @return widget对象。
    */
  public  static TWidget create(TWidget parent, int x, int y, int w, int h)  {
     return new TCheckButton(check_button_create(parent != null ? (parent.nativeObj) : 0, x, y, w, h));
@@ -99,7 +99,7 @@ public class TCheckButton extends TWidget {
    * @param w 宽度
    * @param h 高度
    *
-   * @return 对象。
+   * @return widget对象。
    */
  public  static TWidget createRadio(TWidget parent, int x, int y, int w, int h)  {
     return new TCheckButton(check_button_create_radio(parent != null ? (parent.nativeObj) : 0, x, y, w, h));
@@ -109,7 +109,7 @@ public class TCheckButton extends TWidget {
   /**
    * 设置控件的值。
    * 
-   * @param value 值
+   * @param value 值(勾选为TRUE，非勾选为FALSE)。
    *
    * @return 返回RET_OK表示成功，否则表示失败。
    */

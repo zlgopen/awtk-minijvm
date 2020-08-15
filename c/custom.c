@@ -1,4 +1,6 @@
 #define WITH_FS_RES 1
+#include "conf_io/app_conf.h"
+#include "base/bidi.h"
 
 static jobject jobject_ref(Runtime *runtime, jobject obj) {
   JniEnv *env = runtime->jnienv;

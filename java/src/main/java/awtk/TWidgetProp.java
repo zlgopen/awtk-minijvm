@@ -45,6 +45,13 @@ public enum TWidgetProp {
   H (WIDGET_PROP_H()),
   
   /**
+   * inputing。
+   *
+   */
+ 
+  INPUTING (WIDGET_PROP_INPUTING()),
+  
+  /**
    * caret x。
    *
    */
@@ -64,6 +71,13 @@ public enum TWidgetProp {
    */
  
   DIRTY_RECT_TOLERANCE (WIDGET_PROP_DIRTY_RECT_TOLERANCE()),
+  
+  /**
+   * bidi type(rtl,ltr,auto,wrtl,wltr,lro,rlo)。
+   *
+   */
+ 
+  BIDI (WIDGET_PROP_BIDI()),
   
   /**
    * Canvas。
@@ -978,9 +992,11 @@ public enum TWidgetProp {
   static private native String WIDGET_PROP_Y();
   static private native String WIDGET_PROP_W();
   static private native String WIDGET_PROP_H();
+  static private native String WIDGET_PROP_INPUTING();
   static private native String WIDGET_PROP_CARET_X();
   static private native String WIDGET_PROP_CARET_Y();
   static private native String WIDGET_PROP_DIRTY_RECT_TOLERANCE();
+  static private native String WIDGET_PROP_BIDI();
   static private native String WIDGET_PROP_CANVAS();
   static private native String WIDGET_PROP_LOCALIZE_OPTIONS();
   static private native String WIDGET_PROP_NATIVE_WINDOW();
