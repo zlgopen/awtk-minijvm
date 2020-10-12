@@ -205,7 +205,7 @@ public class TCanvas {
 
 
   /**
-   * 填充矩形。
+   * 绘制矩形。
    * 
    * @param x x坐标。
    * @param y y坐标。
@@ -216,6 +216,21 @@ public class TCanvas {
    */
  public  TRet fillRect(int x, int y, int w, int h)  {
    return TRet.from(canvas_fill_rect(this != null ? (this.nativeObj) : 0, x, y, w, h));
+ }
+
+
+  /**
+   * 填充矩形。
+   * 
+   * @param x x坐标。
+   * @param y y坐标。
+   * @param w 宽度。
+   * @param h 高度。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet clearRect(int x, int y, int w, int h)  {
+   return TRet.from(canvas_clear_rect(this != null ? (this.nativeObj) : 0, x, y, w, h));
  }
 
 
@@ -335,6 +350,21 @@ public class TCanvas {
 
 
   /**
+   * 绘制图片。
+   * 
+   * @param img 图片对象。
+   * @param draw_type 绘制类型。
+   * @param src 源区域。
+   * @param dst 目的区域。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet drawImageEx2(TBitmap img, TImageDrawType draw_type, TRect src, TRect dst)  {
+   return TRet.from(canvas_draw_image_ex2(this != null ? (this.nativeObj) : 0, img != null ? (img.nativeObj) : 0, draw_type.value(), src != null ? (src.nativeObj) : 0, dst != null ? (dst.nativeObj) : 0));
+ }
+
+
+  /**
    * 获取vgcanvas对象。
    * 
    *
@@ -426,6 +456,7 @@ static private native int canvas_untranslate(long c, int dx, int dy);
 static private native int canvas_draw_vline(long c, int x, int y, int h);
 static private native int canvas_draw_hline(long c, int x, int y, int w);
 static private native int canvas_fill_rect(long c, int x, int y, int w, int h);
+static private native int canvas_clear_rect(long c, int x, int y, int w, int h);
 static private native int canvas_stroke_rect(long c, int x, int y, int w, int h);
 static private native int canvas_set_font(long c, String name, int size);
 static private native double canvas_measure_utf8(long c, String str);
@@ -434,6 +465,7 @@ static private native int canvas_draw_utf8_in_rect(long c, String str, long r);
 static private native int canvas_draw_icon(long c, long img, int cx, int cy);
 static private native int canvas_draw_image(long c, long img, long src, long dst);
 static private native int canvas_draw_image_ex(long c, long img, int draw_type, long dst);
+static private native int canvas_draw_image_ex2(long c, long img, int draw_type, long src, long dst);
 static private native long canvas_get_vgcanvas(long c);
 static private native long canvas_cast(long c);
 static private native int canvas_reset(long c);

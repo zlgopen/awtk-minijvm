@@ -72,6 +72,14 @@ public enum TObjectCmd {
   ADD (OBJECT_CMD_ADD()),
   
   /**
+   * 显示对象详细信息。
+   *>参数为属性的名称或路径。
+   *
+   */
+ 
+  DETAIL (OBJECT_CMD_DETAIL()),
+  
+  /**
    * 编辑子项。
    *>参数为属性的名称或路径。
    *
@@ -120,6 +128,7 @@ public enum TObjectCmd {
   static private native String OBJECT_CMD_REMOVE_CHECKED();
   static private native String OBJECT_CMD_CLEAR();
   static private native String OBJECT_CMD_ADD();
+  static private native String OBJECT_CMD_DETAIL();
   static private native String OBJECT_CMD_EDIT();
 
 }

@@ -17,7 +17,7 @@ package awtk;
  *```
  *
  *> 更多用法请参考：[label.xml](
- *https://github.com/zlgopen/awtk/blob/master/demos/assets/default/raw/ui/label.xml)
+ *https://github.com/zlgopen/awtk/blob/master/design/default/ui/label.xml)
  *
  *在c代码中使用函数label\_create创建文本控件。如：
  *
@@ -37,7 +37,7 @@ package awtk;
  *
  *> 更多用法请参考：
  *[theme default](
- *https://github.com/zlgopen/awtk/blob/master/demos/assets/default/raw/styles/default.xml#L144)
+ *https://github.com/zlgopen/awtk/blob/master/design/default/styles/default.xml#L144)
  *
  */
 public class TLabel extends TWidget { 
@@ -95,6 +95,18 @@ public class TLabel extends TWidget {
 
 
   /**
+   * 设置是否自动换行。
+   * 
+   * @param line_wrap 是否自动换行。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setLineWrap(boolean line_wrap)  {
+   return TRet.from(label_set_line_wrap(this != null ? (this.nativeObj) : 0, line_wrap));
+ }
+
+
+  /**
    * 根据文本内容调节控件大小。
    * 
    * @param min_w 最小宽度。
@@ -130,9 +142,20 @@ public class TLabel extends TWidget {
    return label_t_get_prop_length(this.nativeObj);
  }
 
+
+  /**
+   * 是否自动换行。
+   *
+   */
+ public boolean getLineWrap() {
+   return label_t_get_prop_line_wrap(this.nativeObj);
+ }
+
 static private native long label_create(long parent, int x, int y, int w, int h);
 static private native int label_set_length(long widget, int length);
+static private native int label_set_line_wrap(long widget, boolean line_wrap);
 static private native int label_resize_to_content(long widget, int min_w, int max_w, int min_h, int max_h);
 static private native long label_cast(long widget);
 static private native int label_t_get_prop_length(long nativeObj);
+static private native boolean label_t_get_prop_line_wrap(long nativeObj);
 };

@@ -173,6 +173,15 @@ public class TWindowBase extends TWidget {
    return window_base_t_get_prop_move_focus_right_key(this.nativeObj);
  }
 
+
+  /**
+   * 单例。如果窗口存在，先关闭再打开。
+   *
+   */
+ public boolean getSingleInstance() {
+   return window_base_t_get_prop_single_instance(this.nativeObj);
+ }
+
 static private native long window_base_cast(long widget);
 static private native String window_base_t_get_prop_theme(long nativeObj);
 static private native boolean window_base_t_get_prop_disable_anim(long nativeObj);
@@ -185,4 +194,5 @@ static private native String window_base_t_get_prop_move_focus_up_key(long nativ
 static private native String window_base_t_get_prop_move_focus_down_key(long nativeObj);
 static private native String window_base_t_get_prop_move_focus_left_key(long nativeObj);
 static private native String window_base_t_get_prop_move_focus_right_key(long nativeObj);
+static private native boolean window_base_t_get_prop_single_instance(long nativeObj);
 };
