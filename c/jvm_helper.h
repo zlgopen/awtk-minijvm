@@ -85,7 +85,7 @@ static inline char *jni_ctx_get_str(jni_ctx_t *ctx) {
   Utf8String *ustr = env->utf8_create();
   return_value_if_fail(ustr != NULL, NULL);
 
-  env->jstring_2_utf8(jstr, ustr);
+  env->jstring_2_utf8(jstr, ustr, runtime);
   ret = tk_strdup(env->utf8_cstr(ustr));
   env->utf8_destory(ustr);
 

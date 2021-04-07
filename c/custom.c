@@ -1,6 +1,7 @@
 #define WITH_FS_RES 1
 #include "conf_io/app_conf.h"
 #include "base/bidi.h"
+#include "jvm.h"
 
 static jobject jobject_ref(Runtime *runtime, jobject obj) {
   JniEnv *env = runtime->jnienv;
@@ -20,16 +21,18 @@ static void jobject_unref(Runtime *runtime, jobject obj) {
 
 typedef struct _async_callback_info_t {
   jobject obj;
+  JClass *clazz;
   Runtime *runtime;
   char func[TK_NAME_LEN + 1];
 } async_callback_info_t;
 
 static async_callback_info_t *
-async_callback_info_create(Runtime *runtime, jobject obj, const char *name) {
+async_callback_info_create(Runtime *runtime, jobject obj, const char *name, JClass *clazz) {
   JniEnv *env = runtime->jnienv;
   async_callback_info_t *info = TKMEM_ZALLOC(async_callback_info_t);
   return_value_if_fail(info != NULL, NULL);
 
+  info->clazz = clazz;
   info->runtime = runtime;
   info->obj = jobject_ref(runtime, obj);
   tk_strncpy(info->func, name, TK_NAME_LEN);
@@ -48,8 +51,10 @@ static int async_callback_info_call(async_callback_info_t *info, void *data) {
   Utf8String *class_name = info->obj->mb.clazz->name;
   Utf8String *name = env->utf8_create_part_c(name_s, 0, strlen(name_s));
   Utf8String *type = env->utf8_create_part_c(type_s, 0, strlen(type_s));
+  Instance *jloader = info->clazz->jloader;
+
   MethodInfo *minfo =
-      env->find_methodInfo_by_name(class_name, name, type, runtime);
+      env->find_methodInfo_by_name(class_name, name, type, jloader, runtime);
   env->utf8_destory(name);
   env->utf8_destory(type);
 
@@ -127,7 +132,7 @@ int awtk_TEmitter_emitter_on(Runtime *runtime, JClass *clazz) {
   int64_t unused_ctx = jni_ctx_get_int64(&ctx);
 
   async_callback_info_t *info =
-      async_callback_info_create(runtime, on_event, "onEvent");
+      async_callback_info_create(runtime, on_event, "onEvent", clazz);
   uint32_t id = emitter_on(emitter, type, call_on_event, info);
 
   if (id == TK_INVALID_ID) {
@@ -147,7 +152,7 @@ int awtk_TIdle_idle_add(Runtime *runtime, JClass *clazz) {
   jobject on_idle = jni_ctx_get_jobject(&ctx);
   int64_t unused_ctx = jni_ctx_get_int64(&ctx);
   async_callback_info_t *info =
-      async_callback_info_create(runtime, on_idle, "onIdle");
+      async_callback_info_create(runtime, on_idle, "onIdle", clazz);
 
   uint32_t id = idle_add(call_on_idle, info);
   if (id == TK_INVALID_ID) {
@@ -167,7 +172,7 @@ int awtk_TTimer_timer_add(Runtime *runtime, JClass *clazz) {
   int64_t unused_ctx = jni_ctx_get_int64(&ctx);
   int32_t duration = jni_ctx_get_int(&ctx);
   async_callback_info_t *info =
-      async_callback_info_create(runtime, on_timer, "onTimer");
+      async_callback_info_create(runtime, on_timer, "onTimer", clazz);
 
   uint32_t id = timer_add(call_on_timer, info, duration);
   if (id == TK_INVALID_ID) {
@@ -188,7 +193,7 @@ int awtk_TWidget_widget_on(Runtime *runtime, JClass *clazz) {
   int64_t unused_ctx = jni_ctx_get_int64(&ctx);
 
   async_callback_info_t *info =
-      async_callback_info_create(runtime, on_event, "onEvent");
+      async_callback_info_create(runtime, on_event, "onEvent", clazz);
   uint32_t id = widget_on(widget, type, call_on_event, info);
 
   if (id == TK_INVALID_ID) {
@@ -209,7 +214,7 @@ int awtk_TWidget_widget_foreach(Runtime *runtime, JClass *clazz) {
   int64_t unused_ctx = jni_ctx_get_int64(&ctx);
 
   async_callback_info_t *info =
-      async_callback_info_create(runtime, visit, "onData");
+      async_callback_info_create(runtime, visit, "onData", clazz);
   ret_t ret = widget_foreach(widget, call_on_data, info);
   async_callback_info_destroy(info);
 

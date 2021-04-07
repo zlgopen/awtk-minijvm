@@ -220,7 +220,9 @@ public class TCanvas {
 
 
   /**
-   * 填充矩形。
+   * 用填充颜色填充指定矩形。
+   *
+   *> 如果lcd的颜色格式带alpha通道，连同alpha的值一起修改。
    * 
    * @param x x坐标。
    * @param y y坐标。

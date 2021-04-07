@@ -62,6 +62,60 @@ public class TWindowBase extends TWidget {
 
 
   /**
+   * 设计时宽度。
+   *
+   */
+ public int getDesignW() {
+   return window_base_t_get_prop_design_w(this.nativeObj);
+ }
+
+
+  /**
+   * 设计时高度。
+   *
+   */
+ public int getDesignH() {
+   return window_base_t_get_prop_design_h(this.nativeObj);
+ }
+
+
+  /**
+   * 窗口大小与设计时大小不同时，是否自动调整子控件的x坐标。
+   *
+   */
+ public boolean getAutoScaleChildrenX() {
+   return window_base_t_get_prop_auto_scale_children_x(this.nativeObj);
+ }
+
+
+  /**
+   * 窗口大小与设计时大小不同时，是否自动调整子控件的y坐标。
+   *
+   */
+ public boolean getAutoScaleChildrenY() {
+   return window_base_t_get_prop_auto_scale_children_y(this.nativeObj);
+ }
+
+
+  /**
+   * 窗口大小与设计时大小不同时，是否自动调整子控件的宽度。
+   *
+   */
+ public boolean getAutoScaleChildrenW() {
+   return window_base_t_get_prop_auto_scale_children_w(this.nativeObj);
+ }
+
+
+  /**
+   * 窗口大小与设计时大小不同时，是否自动调整子控件的高度。
+   *
+   */
+ public boolean getAutoScaleChildrenH() {
+   return window_base_t_get_prop_auto_scale_children_h(this.nativeObj);
+ }
+
+
+  /**
    * 禁用窗口动画。
    *
    */
@@ -184,6 +238,12 @@ public class TWindowBase extends TWidget {
 
 static private native long window_base_cast(long widget);
 static private native String window_base_t_get_prop_theme(long nativeObj);
+static private native int window_base_t_get_prop_design_w(long nativeObj);
+static private native int window_base_t_get_prop_design_h(long nativeObj);
+static private native boolean window_base_t_get_prop_auto_scale_children_x(long nativeObj);
+static private native boolean window_base_t_get_prop_auto_scale_children_y(long nativeObj);
+static private native boolean window_base_t_get_prop_auto_scale_children_w(long nativeObj);
+static private native boolean window_base_t_get_prop_auto_scale_children_h(long nativeObj);
 static private native boolean window_base_t_get_prop_disable_anim(long nativeObj);
 static private native int window_base_t_get_prop_closable(long nativeObj);
 static private native String window_base_t_get_prop_open_anim_hint(long nativeObj);

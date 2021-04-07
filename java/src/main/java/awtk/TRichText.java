@@ -129,15 +129,6 @@ public class TRichText extends TWidget {
 
 
   /**
-   * 边距。
-   *
-   */
- public int getMargin() {
-   return rich_text_t_get_prop_margin(this.nativeObj);
- }
-
-
-  /**
    * 标识控件是否允许上下拖动。
    *
    */
@@ -150,6 +141,5 @@ static private native int rich_text_set_text(long widget, String text);
 static private native int rich_text_set_yslidable(long widget, boolean yslidable);
 static private native long rich_text_cast(long widget);
 static private native int rich_text_t_get_prop_line_gap(long nativeObj);
-static private native int rich_text_t_get_prop_margin(long nativeObj);
 static private native boolean rich_text_t_get_prop_yslidable(long nativeObj);
 };

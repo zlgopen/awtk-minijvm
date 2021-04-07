@@ -178,6 +178,19 @@ public class TWidget {
 
 
   /**
+   * 查询指定的style是否存在。
+   * 
+   * @param style_name style的名称（如果为 NULL，则默认为 default）。
+   * @param state_name state的名称（如果为 NULL，则默认为 normal）。
+   *
+   * @return 存在返回 TRUE，不存在返回 FALSE。
+   */
+ public  boolean isStyleExist(String style_name, String state_name)  {
+    return widget_is_style_exist(this != null ? (this.nativeObj) : 0, style_name, state_name);
+ }
+
+
+  /**
    * 启用指定的style。
    * 
    * @param style style的名称。
@@ -266,6 +279,94 @@ public class TWidget {
    */
  public  int getValue()  {
     return widget_get_value(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件enable属性值。
+   * 
+   *
+   * @return 返回enable。
+   */
+ public  boolean getEnable()  {
+    return widget_get_enable(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件floating属性值。
+   * 
+   *
+   * @return 返回floating。
+   */
+ public  boolean getFloating()  {
+    return widget_get_floating(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件auto_adjust_size属性值。
+   * 
+   *
+   * @return 返回auto_adjust_size。
+   */
+ public  boolean getAutoAdjustSize()  {
+    return widget_get_auto_adjust_size(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件with_focus_state属性值。
+   * 
+   *
+   * @return 返回with_focus_state。
+   */
+ public  boolean getWithFocusState()  {
+    return widget_get_with_focus_state(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件focusable属性值。
+   * 
+   *
+   * @return 返回focusable。
+   */
+ public  boolean getFocusable()  {
+    return widget_get_focusable(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件sensitive属性值。
+   * 
+   *
+   * @return 返回sensitive。
+   */
+ public  boolean getSensitive()  {
+    return widget_get_sensitive(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件visible属性值。
+   * 
+   *
+   * @return 返回visible。
+   */
+ public  boolean getVisible()  {
+    return widget_get_visible(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 获取控件feedback属性值。
+   * 
+   *
+   * @return 返回feedback。
+   */
+ public  boolean getFeedback()  {
+    return widget_get_feedback(this != null ? (this.nativeObj) : 0);
  }
 
 
@@ -929,6 +1030,17 @@ public class TWidget {
 
 
   /**
+   * 检查控件弹出对话框控件是否已经打开了（而非挂起状态）。
+   * 
+   *
+   * @return 返回FALSE表示不是，否则表示是。
+   */
+ public  boolean isOpenedDialog()  {
+    return widget_is_opened_dialog(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
    * 检查控件弹出窗口控件是否已经打开了（而非挂起状态）。
    * 
    *
@@ -1154,6 +1266,17 @@ public class TWidget {
    */
  public  TRet dispatchToKeyTarget(TEvent e)  {
    return TRet.from(widget_dispatch_to_key_target(this != null ? (this.nativeObj) : 0, e != null ? (e.nativeObj) : 0));
+ }
+
+
+  /**
+   * 获取 widget 对应风格类型
+   * 
+   *
+   * @return 返回 widget 的对应风格类型。
+   */
+ public  String getStyleType()  {
+    return widget_get_style_type(this != null ? (this.nativeObj) : 0);
  }
 
 
@@ -1407,81 +1530,6 @@ public class TWidget {
 
 
   /**
-   * 启用/禁用状态。
-   *
-   */
- public boolean getEnable() {
-   return widget_t_get_prop_enable(this.nativeObj);
- }
-
-
-  /**
-   * 是否启用按键音、触屏音和震动等反馈。
-   *
-   */
- public boolean getFeedback() {
-   return widget_t_get_prop_feedback(this.nativeObj);
- }
-
-
-  /**
-   * 是否可见。
-   *
-   */
- public boolean getVisible() {
-   return widget_t_get_prop_visible(this.nativeObj);
- }
-
-
-  /**
-   * 是否接受用户事件。
-   *
-   */
- public boolean getSensitive() {
-   return widget_t_get_prop_sensitive(this.nativeObj);
- }
-
-
-  /**
-   * 是否支持焦点停留。
-   *
-   */
- public boolean getFocusable() {
-   return widget_t_get_prop_focusable(this.nativeObj);
- }
-
-
-  /**
-   * 是否支持焦点状态。
-   *> 如果希望style支持焦点状态，但有不希望焦点停留，可用本属性。
-   *
-   */
- public boolean getWithFocusState() {
-   return widget_t_get_prop_with_focus_state(this.nativeObj);
- }
-
-
-  /**
-   * 是否根据子控件和文本自动调整控件自身大小。
-   *
-   *> 为true时，最好不要使用child_layout，否则可能有冲突。
-   *
-   */
- public boolean getAutoAdjustSize() {
-   return widget_t_get_prop_auto_adjust_size(this.nativeObj);
- }
-
-
-  /**
-   * 标识控件是否启用浮动布局，不受父控件的children_layout的控制。
-   *
-   */
- public boolean getFloating() {
-   return widget_t_get_prop_floating(this.nativeObj);
- }
-
-
-  /**
    * 脏矩形超出控件本身大小的最大范围(一般不用指定)。
    *
    *> 如果 border 太粗或 offset 太大等原因，导致脏矩形超出控件本身大小太多（大于缺省值）时，才需要指定。
@@ -1511,6 +1559,7 @@ static private native int widget_move_resize(long widget, int x, int y, int w, i
 static private native int widget_set_value(long widget, int value);
 static private native int widget_animate_value_to(long widget, int value, int duration);
 static private native int widget_add_value(long widget, int delta);
+static private native boolean widget_is_style_exist(long widget, String style_name, String state_name);
 static private native int widget_use_style(long widget, String style);
 static private native int widget_set_text_utf8(long widget, String text);
 static private native int widget_set_child_text_utf8(long widget, String name, String text);
@@ -1518,6 +1567,14 @@ static private native int widget_set_child_text_with_double(long widget, String 
 static private native int widget_set_child_text_with_int(long widget, String name, String format, int value);
 static private native int widget_set_tr_text(long widget, String text);
 static private native int widget_get_value(long widget);
+static private native boolean widget_get_enable(long widget);
+static private native boolean widget_get_floating(long widget);
+static private native boolean widget_get_auto_adjust_size(long widget);
+static private native boolean widget_get_with_focus_state(long widget);
+static private native boolean widget_get_focusable(long widget);
+static private native boolean widget_get_sensitive(long widget);
+static private native boolean widget_get_visible(long widget);
+static private native boolean widget_get_feedback(long widget);
 static private native long widget_get_text(long widget);
 static private native int widget_set_name(long widget, String name);
 static private native int widget_set_theme(long widget, String name);
@@ -1569,6 +1626,7 @@ static private native boolean widget_is_normal_window(long widget);
 static private native boolean widget_is_dialog(long widget);
 static private native boolean widget_is_popup(long widget);
 static private native boolean widget_is_overlay(long widget);
+static private native boolean widget_is_opened_dialog(long widget);
 static private native boolean widget_is_opened_popup(long widget);
 static private native boolean widget_is_keyboard(long widget);
 static private native boolean widget_is_designing_window(long widget);
@@ -1588,6 +1646,7 @@ static private native int widget_fill_bg_rect(long widget, long c, long r, int d
 static private native int widget_fill_fg_rect(long widget, long c, long r, int draw_type);
 static private native int widget_dispatch_to_target(long widget, long e);
 static private native int widget_dispatch_to_key_target(long widget, long e);
+static private native String widget_get_style_type(long widget);
 static private native int widget_update_style(long widget);
 static private native int widget_update_style_recursive(long widget);
 static private native int widget_set_as_key_target(long widget);

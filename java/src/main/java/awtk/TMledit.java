@@ -226,51 +226,6 @@ public class TMledit extends TWidget {
 
 
   /**
-   * 编辑器是否为只读。
-   *
-   */
- public boolean getReadonly() {
-   return mledit_t_get_prop_readonly(this.nativeObj);
- }
-
-
-  /**
-   * 上边距。
-   *
-   */
- public int getTopMargin() {
-   return mledit_t_get_prop_top_margin(this.nativeObj);
- }
-
-
-  /**
-   * 下边距。
-   *
-   */
- public int getBottomMargin() {
-   return mledit_t_get_prop_bottom_margin(this.nativeObj);
- }
-
-
-  /**
-   * 左边距。
-   *
-   */
- public int getLeftMargin() {
-   return mledit_t_get_prop_left_margin(this.nativeObj);
- }
-
-
-  /**
-   * 右边距。
-   *
-   */
- public int getRightMargin() {
-   return mledit_t_get_prop_right_margin(this.nativeObj);
- }
-
-
-  /**
    * 输入提示。
    *
    */
@@ -298,15 +253,6 @@ public class TMledit extends TWidget {
 
 
   /**
-   * 是否自动折行。
-   *
-   */
- public boolean getWrapWord() {
-   return mledit_t_get_prop_wrap_word(this.nativeObj);
- }
-
-
-  /**
    * 最大行数。
    *
    */
@@ -316,11 +262,29 @@ public class TMledit extends TWidget {
 
 
   /**
+   * 是否自动折行。
+   *
+   */
+ public boolean getWrapWord() {
+   return mledit_t_get_prop_wrap_word(this.nativeObj);
+ }
+
+
+  /**
    * 鼠标一次滚动行数。
    *
    */
  public int getScrollLine() {
    return mledit_t_get_prop_scroll_line(this.nativeObj);
+ }
+
+
+  /**
+   * 编辑器是否为只读。
+   *
+   */
+ public boolean getReadonly() {
+   return mledit_t_get_prop_readonly(this.nativeObj);
  }
 
 
@@ -369,17 +333,13 @@ static private native int mledit_set_scroll_line(long widget, int scroll_line);
 static private native int mledit_set_open_im_when_focused(long widget, boolean open_im_when_focused);
 static private native int mledit_set_close_im_when_blured(long widget, boolean close_im_when_blured);
 static private native long mledit_cast(long widget);
-static private native boolean mledit_t_get_prop_readonly(long nativeObj);
-static private native int mledit_t_get_prop_top_margin(long nativeObj);
-static private native int mledit_t_get_prop_bottom_margin(long nativeObj);
-static private native int mledit_t_get_prop_left_margin(long nativeObj);
-static private native int mledit_t_get_prop_right_margin(long nativeObj);
 static private native String mledit_t_get_prop_tips(long nativeObj);
 static private native String mledit_t_get_prop_tr_tips(long nativeObj);
 static private native String mledit_t_get_prop_keyboard(long nativeObj);
-static private native boolean mledit_t_get_prop_wrap_word(long nativeObj);
 static private native int mledit_t_get_prop_max_lines(long nativeObj);
+static private native boolean mledit_t_get_prop_wrap_word(long nativeObj);
 static private native int mledit_t_get_prop_scroll_line(long nativeObj);
+static private native boolean mledit_t_get_prop_readonly(long nativeObj);
 static private native boolean mledit_t_get_prop_cancelable(long nativeObj);
 static private native boolean mledit_t_get_prop_open_im_when_focused(long nativeObj);
 static private native boolean mledit_t_get_prop_close_im_when_blured(long nativeObj);
