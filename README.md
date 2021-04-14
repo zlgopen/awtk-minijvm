@@ -37,6 +37,14 @@ cd awtk_gui
 make
 ```
 
+* 生成资源
+
+```
+python ./scripts/update_res.py all
+```
+
+> 或者通过 designer 生成资源
+
 ## Run
 
 * on linux
