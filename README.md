@@ -7,9 +7,20 @@
 
 * Download and Build miniJVM
 
+
 ```
 git clone https://github.com/digitalgust/miniJVM.git
-mkdir build && cd build && cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug ../minijvm/c && cmake --build . && cmake --build . --target mini_jvm
+```
+
+>build minijvm
+```
+mkdir build && cd build && cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug ../minijvm/c && cmake --build . && cmake --build . --target mini_jvm; cd -
+```
+
+> build java
+```
+cd minijvm/java
+mvn clean package
 ```
 
 * Download awtk and awtk-minijvm
