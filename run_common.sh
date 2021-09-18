@@ -9,5 +9,5 @@ OPTIONS=
 
 cp -fv ../../binary/$PLATFORM/libawtk-jni.* .
 
-echo $MINI_JVM $OPTIONS -cp $CLASSPATH DemoBasic
+echo $MINI_JVM $OPTIONS -bootclasspath $BOOTCLASSPATH -cp $CLASSPATH DemoBasic
 $MINI_JVM $OPTIONS -bootclasspath $BOOTCLASSPATH -cp $CLASSPATH DemoBasic
