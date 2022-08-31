@@ -129,6 +129,18 @@ public class TSlider extends TWidget {
 
 
   /**
+   * 设置前景色的线帽形状。（默认为跟随风格的圆角设置，但是在没有设置圆角的时候无法使用 "round" 来设置圆角）
+   * 
+   * @param line_cap 前景色的线帽形状，取值为：butt|round
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setLineCap(String line_cap)  {
+   return TRet.from(slider_set_line_cap(this != null ? (this.nativeObj) : 0, line_cap));
+ }
+
+
+  /**
    * 设置滑块的拖动的最小单位。
    * 
    * @param step 拖动的最小单位。
@@ -192,15 +204,6 @@ public class TSlider extends TWidget {
 
 
   /**
-   * 滑块的是否为垂直方向。
-   *
-   */
- public boolean getVertical() {
-   return slider_t_get_prop_vertical(this.nativeObj);
- }
-
-
-  /**
    * 轴的宽度或高度（单位：像素），为0表示为控件的宽度或高度的一半，缺省为0。
    *
    */
@@ -210,11 +213,29 @@ public class TSlider extends TWidget {
 
 
   /**
-   * 滑块的宽度或高度（单位：像素），缺省为10。
+   * 滑块的宽度或高度（单位：像素），缺省为 bar_size * 1.5。
    *
    */
  public int getDraggerSize() {
    return slider_t_get_prop_dragger_size(this.nativeObj);
+ }
+
+
+  /**
+   * 前景色的线帽形状。（取值：butt|round，默认为跟随风格的圆角设置, 但是在没有设置圆角的时候无法使用 "round" 来设置圆角）
+   *
+   */
+ public String getLineCap() {
+   return slider_t_get_prop_line_cap(this.nativeObj);
+ }
+
+
+  /**
+   * 滑块的是否为垂直方向。
+   *
+   */
+ public boolean getVertical() {
+   return slider_t_get_prop_vertical(this.nativeObj);
  }
 
 
@@ -240,6 +261,7 @@ static private native long slider_cast(long widget);
 static private native int slider_set_value(long widget, double value);
 static private native int slider_set_min(long widget, double min);
 static private native int slider_set_max(long widget, double max);
+static private native int slider_set_line_cap(long widget, String line_cap);
 static private native int slider_set_step(long widget, double step);
 static private native int slider_set_bar_size(long widget, int bar_size);
 static private native int slider_set_vertical(long widget, boolean vertical);
@@ -247,9 +269,10 @@ static private native double slider_t_get_prop_value(long nativeObj);
 static private native double slider_t_get_prop_min(long nativeObj);
 static private native double slider_t_get_prop_max(long nativeObj);
 static private native double slider_t_get_prop_step(long nativeObj);
-static private native boolean slider_t_get_prop_vertical(long nativeObj);
 static private native int slider_t_get_prop_bar_size(long nativeObj);
 static private native int slider_t_get_prop_dragger_size(long nativeObj);
+static private native String slider_t_get_prop_line_cap(long nativeObj);
+static private native boolean slider_t_get_prop_vertical(long nativeObj);
 static private native boolean slider_t_get_prop_dragger_adapt_to_icon(long nativeObj);
 static private native boolean slider_t_get_prop_slide_with_bar(long nativeObj);
 };

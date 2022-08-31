@@ -265,6 +265,17 @@ public class TCanvas {
 
 
   /**
+   * 释放canvas中字体相关的资源。
+   * 
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet resetFont()  {
+   return TRet.from(canvas_reset_font(this != null ? (this.nativeObj) : 0));
+ }
+
+
+  /**
    * 计算文本所占的宽度。
    *
    *> 供脚本语言使用。
@@ -401,6 +412,18 @@ public class TCanvas {
 
 
   /**
+   * 清除canvas中缓存。
+   *> 备注：主要用于窗口动画的离线画布绘制完成后重置在线画布，使下一帧中lcd对象的数据保持一致。
+   * 
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet resetCache()  {
+   return TRet.from(canvas_reset_cache(this != null ? (this.nativeObj) : 0));
+ }
+
+
+  /**
    * x坐标偏移。
    *
    */
@@ -461,6 +484,7 @@ static private native int canvas_fill_rect(long c, int x, int y, int w, int h);
 static private native int canvas_clear_rect(long c, int x, int y, int w, int h);
 static private native int canvas_stroke_rect(long c, int x, int y, int w, int h);
 static private native int canvas_set_font(long c, String name, int size);
+static private native int canvas_reset_font(long c);
 static private native double canvas_measure_utf8(long c, String str);
 static private native int canvas_draw_utf8(long c, String str, int x, int y);
 static private native int canvas_draw_utf8_in_rect(long c, String str, long r);
@@ -471,6 +495,7 @@ static private native int canvas_draw_image_ex2(long c, long img, int draw_type,
 static private native long canvas_get_vgcanvas(long c);
 static private native long canvas_cast(long c);
 static private native int canvas_reset(long c);
+static private native int canvas_reset_cache(long c);
 static private native int canvas_t_get_prop_ox(long nativeObj);
 static private native int canvas_t_get_prop_oy(long nativeObj);
 static private native String canvas_t_get_prop_font_name(long nativeObj);

@@ -229,6 +229,18 @@ public class TSlideIndicator extends TWidget {
 
 
   /**
+   * 设置是否启用过渡效果。
+   * 
+   * @param transition 是否启用过渡效果
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setTransition(boolean transition)  {
+   return TRet.from(slide_indicator_set_transition(this != null ? (this.nativeObj) : 0, transition));
+ }
+
+
+  /**
    * 最大值(缺省为100)。
    *
    */
@@ -284,19 +296,19 @@ public class TSlideIndicator extends TWidget {
 
 
   /**
-   * 锚点x坐标。
+   * 锚点x坐标。(后面加上px为像素点，不加px为相对百分比坐标0.0f到1.0f)
    *
    */
- public double getAnchorX() {
+ public String getAnchorX() {
    return slide_indicator_t_get_prop_anchor_x(this.nativeObj);
  }
 
 
   /**
-   * 锚点y坐标。
+   * 锚点y坐标。(后面加上px为像素点，不加px为相对百分比坐标0.0f到1.0f)
    *
    */
- public double getAnchorY() {
+ public String getAnchorY() {
    return slide_indicator_t_get_prop_anchor_y(this.nativeObj);
  }
 
@@ -307,6 +319,15 @@ public class TSlideIndicator extends TWidget {
    */
  public String getIndicatedTarget() {
    return slide_indicator_t_get_prop_indicated_target(this.nativeObj);
+ }
+
+
+  /**
+   * 是否启用过渡效果。
+   *
+   */
+ public boolean getTransition() {
+   return slide_indicator_t_get_prop_transition(this.nativeObj);
  }
 
 static private native long slide_indicator_create(long parent, int x, int y, int w, int h);
@@ -322,6 +343,7 @@ static private native int slide_indicator_set_spacing(long widget, double spacin
 static private native int slide_indicator_set_size(long widget, int size);
 static private native int slide_indicator_set_anchor(long widget, String anchor_x, String anchor_y);
 static private native int slide_indicator_set_indicated_target(long widget, String target_name);
+static private native int slide_indicator_set_transition(long widget, boolean transition);
 static private native int slide_indicator_t_get_prop_value(long nativeObj);
 static private native int slide_indicator_t_get_prop_max(long nativeObj);
 static private native int slide_indicator_t_get_prop_default_paint(long nativeObj);
@@ -329,7 +351,8 @@ static private native int slide_indicator_t_get_prop_auto_hide(long nativeObj);
 static private native int slide_indicator_t_get_prop_margin(long nativeObj);
 static private native double slide_indicator_t_get_prop_spacing(long nativeObj);
 static private native int slide_indicator_t_get_prop_size(long nativeObj);
-static private native double slide_indicator_t_get_prop_anchor_x(long nativeObj);
-static private native double slide_indicator_t_get_prop_anchor_y(long nativeObj);
+static private native String slide_indicator_t_get_prop_anchor_x(long nativeObj);
+static private native String slide_indicator_t_get_prop_anchor_y(long nativeObj);
 static private native String slide_indicator_t_get_prop_indicated_target(long nativeObj);
+static private native boolean slide_indicator_t_get_prop_transition(long nativeObj);
 };

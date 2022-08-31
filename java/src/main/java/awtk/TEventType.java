@@ -108,6 +108,13 @@ public enum TEventType {
   CLICK (EVT_CLICK()),
   
   /**
+   * 双击事件名(pointer_event_t)。
+   *
+   */
+ 
+  DOUBLE_CLICK (EVT_DOUBLE_CLICK()),
+  
+  /**
    * 得到焦点事件名(event_t)。
    *
    */
@@ -483,7 +490,7 @@ public enum TEventType {
   RESET (EVT_RESET()),
   
   /**
-   * 在指定的时间内(WITH_SCREEN_SAVER_TIME)，没有用户输入事件，由窗口管理器触发。
+   * 在指定的时间内，没有用户输入事件，由窗口管理器触发。
    *
    */
  
@@ -531,6 +538,13 @@ public enum TEventType {
    */
  
   REQUEST_QUIT_APP (EVT_REQUEST_QUIT_APP()),
+  
+  /**
+   * 即将改变主题(event_t)。
+   *
+   */
+ 
+  THEME_WILL_CHANGE (EVT_THEME_WILL_CHANGE()),
   
   /**
    * 主题变化(event_t)。
@@ -589,6 +603,13 @@ public enum TEventType {
   PAGE_CHANGED (EVT_PAGE_CHANGED()),
   
   /**
+   * 页面正在改变(offset_change_event_t)。
+   *
+   */
+ 
+  PAGE_CHANGING (EVT_PAGE_CHANGING()),
+  
+  /**
    * 资源管理加载某个资源(assets_event_t)。
    *
    */
@@ -615,6 +636,27 @@ public enum TEventType {
    */
  
   TIMER (EVT_TIMER()),
+  
+  /**
+   * 数据到来(event_t)。
+   *
+   */
+ 
+  DATA (EVT_DATA()),
+  
+  /**
+   * 客户连接到来(event_t)。
+   *
+   */
+ 
+  CONNECT (EVT_CONNECT()),
+  
+  /**
+   * 模型变化。用于fscript实现窗口间通讯(model_event_t)。
+   *
+   */
+ 
+  MODEL_CHANGE (EVT_MODEL_CHANGE()),
   
   /**
    * event queue其它请求编号起始值。
@@ -768,6 +810,7 @@ public enum TEventType {
   static private native int EVT_POINTER_LEAVE();
   static private native int EVT_LONG_PRESS();
   static private native int EVT_CLICK();
+  static private native int EVT_DOUBLE_CLICK();
   static private native int EVT_FOCUS();
   static private native int EVT_BLUR();
   static private native int EVT_KEY_DOWN();
@@ -828,6 +871,7 @@ public enum TEventType {
   static private native int EVT_ORIENTATION_CHANGED();
   static private native int EVT_WIDGET_CREATED();
   static private native int EVT_REQUEST_QUIT_APP();
+  static private native int EVT_THEME_WILL_CHANGE();
   static private native int EVT_THEME_CHANGED();
   static private native int EVT_WIDGET_ADD_CHILD();
   static private native int EVT_WIDGET_REMOVE_CHILD();
@@ -836,10 +880,14 @@ public enum TEventType {
   static private native int EVT_SCROLL_END();
   static private native int EVT_MULTI_GESTURE();
   static private native int EVT_PAGE_CHANGED();
+  static private native int EVT_PAGE_CHANGING();
   static private native int EVT_ASSET_MANAGER_LOAD_ASSET();
   static private native int EVT_ASSET_MANAGER_UNLOAD_ASSET();
   static private native int EVT_ASSET_MANAGER_CLEAR_CACHE();
   static private native int EVT_TIMER();
+  static private native int EVT_DATA();
+  static private native int EVT_CONNECT();
+  static private native int EVT_MODEL_CHANGE();
   static private native int EVT_REQ_START();
   static private native int EVT_USER_START();
   static private native int EVT_NONE();

@@ -122,7 +122,7 @@ public enum TValueType {
   WSTRING (VALUE_TYPE_WSTRING()),
   
   /**
-   * object_t*类型。
+   * tk_object_t*类型。
    *
    */
  
@@ -161,7 +161,42 @@ public enum TValueType {
    *
    */
  
-  GRADIENT (VALUE_TYPE_GRADIENT());
+  GRADIENT (VALUE_TYPE_GRADIENT()),
+  
+  /**
+   * id。
+   *
+   */
+ 
+  ID (VALUE_TYPE_ID()),
+  
+  /**
+   * func。
+   *
+   */
+ 
+  FUNC (VALUE_TYPE_FUNC()),
+  
+  /**
+   * func definition。
+   *
+   */
+ 
+  FUNC_DEF (VALUE_TYPE_FUNC_DEF()),
+  
+  /**
+   * void*类型。
+   *
+   */
+ 
+  POINTER_REF (VALUE_TYPE_POINTER_REF()),
+  
+  /**
+   * 位图类型。
+   *
+   */
+ 
+  BITMAP (VALUE_TYPE_BITMAP());
  
  
   private TValueType(int value) {
@@ -218,5 +253,10 @@ public enum TValueType {
   static private native int VALUE_TYPE_UBJSON();
   static private native int VALUE_TYPE_TOKEN();
   static private native int VALUE_TYPE_GRADIENT();
+  static private native int VALUE_TYPE_ID();
+  static private native int VALUE_TYPE_FUNC();
+  static private native int VALUE_TYPE_FUNC_DEF();
+  static private native int VALUE_TYPE_POINTER_REF();
+  static private native int VALUE_TYPE_BITMAP();
 
 }

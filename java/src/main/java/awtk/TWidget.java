@@ -64,6 +64,30 @@ public class TWidget {
 
 
   /**
+   * 通过名称查找父控件。
+   * 
+   * @param name 名称。
+   *
+   * @return 父控件。
+   */
+ public  TWidget findParentByName(String name)  {
+    return new TWidget(widget_find_parent_by_name(this != null ? (this.nativeObj) : 0, name));
+ }
+
+
+  /**
+   * 通过类型查找父控件。
+   * 
+   * @param type 类型。
+   *
+   * @return 父控件。
+   */
+ public  TWidget findParentByType(String type)  {
+    return new TWidget(widget_find_parent_by_type(this != null ? (this.nativeObj) : 0, type));
+ }
+
+
+  /**
    * 获取当前窗口中的焦点控件。
    * 
    *
@@ -154,6 +178,17 @@ public class TWidget {
 
 
   /**
+   * 移动控件到父控件中间。
+   * 
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet moveToCenter()  {
+   return TRet.from(widget_move_to_center(this != null ? (this.nativeObj) : 0));
+ }
+
+
+  /**
    * 调整控件的大小。
    * 
    * @param w 宽度
@@ -182,6 +217,17 @@ public class TWidget {
 
 
   /**
+   * 获取控件的值。只是对widget\_get\_prop的包装，值的意义由子类控件决定。
+   * 
+   *
+   * @return 返回值。
+   */
+ public  double getValue()  {
+    return widget_get_value(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
    * 设置控件的值。
    *只是对widget\_set\_prop的包装，值的意义由子类控件决定。
    * 
@@ -189,8 +235,58 @@ public class TWidget {
    *
    * @return 返回RET_OK表示成功，否则表示失败。
    */
- public  TRet setValue(int value)  {
+ public  TRet setValue(double value)  {
    return TRet.from(widget_set_value(this != null ? (this.nativeObj) : 0, value));
+ }
+
+
+  /**
+   * 增加控件的值。
+   *只是对widget\_set\_prop的包装，值的意义由子类控件决定。
+   * 
+   * @param delta 增量。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet addValue(double delta)  {
+   return TRet.from(widget_add_value(this != null ? (this.nativeObj) : 0, delta));
+ }
+
+
+  /**
+   * 获取控件的值。只是对widget\_get\_prop的包装，值的意义由子类控件决定。
+   * 
+   *
+   * @return 返回值。
+   */
+ public  int getValueInt()  {
+    return widget_get_value_int(this != null ? (this.nativeObj) : 0);
+ }
+
+
+  /**
+   * 设置控件的值。
+   *只是对widget\_set\_prop的包装，值的意义由子类控件决定。
+   * 
+   * @param value 值。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setValueInt(int value)  {
+   return TRet.from(widget_set_value_int(this != null ? (this.nativeObj) : 0, value));
+ }
+
+
+  /**
+   * 增加控件的值。
+   *只是对widget\_set\_prop的包装，值的意义由子类控件决定。
+   * 
+   * @param delta 增量。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet addValueInt(int delta)  {
+   return TRet.from(widget_add_value_int(this != null ? (this.nativeObj) : 0, delta));
  }
 
 
@@ -203,21 +299,8 @@ public class TWidget {
    *
    * @return 返回RET_OK表示成功，否则表示失败。
    */
- public  TRet animateValueTo(int value, int duration)  {
+ public  TRet animateValueTo(double value, int duration)  {
    return TRet.from(widget_animate_value_to(this != null ? (this.nativeObj) : 0, value, duration));
- }
-
-
-  /**
-   * 增加控件的值。
-   *只是对widget\_set\_prop的包装，值的意义由子类控件决定。
-   * 
-   * @param delta 增量。
-   *
-   * @return 返回RET_OK表示成功，否则表示失败。
-   */
- public  TRet addValue(int delta)  {
-   return TRet.from(widget_add_value(this != null ? (this.nativeObj) : 0, delta));
  }
 
 
@@ -247,8 +330,7 @@ public class TWidget {
 
 
   /**
-   * 设置控件的文本。
-   *只是对widget\_set\_prop的包装，文本的意义由子类控件决定。
+   * 设置控件的文本。（如果字符串相同，则不会重复设置以及触发事件）
    * 
    * @param text 文本。
    *
@@ -256,6 +338,19 @@ public class TWidget {
    */
  public  TRet setText(String text)  {
    return TRet.from(widget_set_text_utf8(this != null ? (this.nativeObj) : 0, text));
+ }
+
+
+  /**
+   * 设置控件的文本。
+   * 
+   * @param text 文本。
+   * @param check_diff 是否检查设置的文本是否和控件中的文本一样。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setTextEx(String text, boolean check_diff)  {
+   return TRet.from(widget_set_text_utf8_ex(this != null ? (this.nativeObj) : 0, text, check_diff));
  }
 
 
@@ -312,17 +407,6 @@ public class TWidget {
    */
  public  TRet setTrText(String text)  {
    return TRet.from(widget_set_tr_text(this != null ? (this.nativeObj) : 0, text));
- }
-
-
-  /**
-   * 获取控件的值。只是对widget\_get\_prop的包装，值的意义由子类控件决定。
-   * 
-   *
-   * @return 返回值。
-   */
- public  int getValue()  {
-    return widget_get_value(this != null ? (this.nativeObj) : 0);
  }
 
 
@@ -444,8 +528,6 @@ public class TWidget {
 
   /**
    * 设置theme的名称，用于动态切换主题。名称与当前主题名称相同，则重新加载全部资源。
-   *
-   *> 目前只支持带有文件系统的平台。
    * 
    * @param name 主题的名称。
    *
@@ -453,6 +535,17 @@ public class TWidget {
    */
  public  TRet setTheme(String name)  {
    return TRet.from(widget_set_theme(this != null ? (this.nativeObj) : 0, name));
+ }
+
+
+  /**
+   * 获取 theme 的名称
+   * 
+   *
+   * @return 成功返回主题名称，失败否则 NULL。
+   */
+ public  String getThemeName()  {
+    return widget_get_theme_name(this != null ? (this.nativeObj) : 0);
  }
 
 
@@ -870,6 +963,19 @@ public class TWidget {
 
 
   /**
+   * 设置多个参数。
+   *>参数之间用&分隔，名称和值之间用=分隔。如: name=awtk&min=10&max=100
+   * 
+   * @param params 参数列表。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setProps(String params)  {
+   return TRet.from(widget_set_props(this != null ? (this.nativeObj) : 0, params));
+ }
+
+
+  /**
    * 设置字符串格式的属性。
    * 
    * @param name 属性的名称。
@@ -917,6 +1023,32 @@ public class TWidget {
    */
  public  long getPropPointer(String name)  {
     return widget_get_prop_pointer(this != null ? (this.nativeObj) : 0, name);
+ }
+
+
+  /**
+   * 设置浮点数格式的属性。
+   * 
+   * @param name 属性的名称。
+   * @param v 属性的值。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet setPropFloat(String name, double v)  {
+   return TRet.from(widget_set_prop_float(this != null ? (this.nativeObj) : 0, name, v));
+ }
+
+
+  /**
+   * 获取浮点数格式的属性。
+   * 
+   * @param name 属性的名称。
+   * @param defval 缺省值。
+   *
+   * @return 返回属性的值。
+   */
+ public  double getPropFloat(String name, double defval)  {
+    return widget_get_prop_float(this != null ? (this.nativeObj) : 0, name, defval);
  }
 
 
@@ -1504,6 +1636,18 @@ public class TWidget {
 
 
   /**
+   * 加入一个子控件默认实现(供子类调用)。
+   * 
+   * @param child 子控件对象。
+   *
+   * @return 返回RET_OK表示成功，否则表示失败。
+   */
+ public  TRet addChildDefault(TWidget child)  {
+   return TRet.from(widget_add_child_default(this != null ? (this.nativeObj) : 0, child != null ? (child.nativeObj) : 0));
+ }
+
+
+  /**
    * x坐标(相对于父控件的x坐标)。
    *
    */
@@ -1585,6 +1729,15 @@ public class TWidget {
 
 
   /**
+   * 不透明度(0-255)，0完全透明，255完全不透明。
+   *
+   */
+ public int getOpacity() {
+   return widget_t_get_prop_opacity(this.nativeObj);
+ }
+
+
+  /**
    * 脏矩形超出控件本身大小的最大范围(一般不用指定)。
    *
    *> 如果 border 太粗或 offset 太大等原因，导致脏矩形超出控件本身大小太多（大于缺省值）时，才需要指定。
@@ -1605,6 +1758,8 @@ public class TWidget {
 
 static private native int widget_count_children(long widget);
 static private native long widget_get_child(long widget, int index);
+static private native long widget_find_parent_by_name(long widget, String name);
+static private native long widget_find_parent_by_type(long widget, String type);
 static private native long widget_get_focused_widget(long widget);
 static private native long widget_get_native_window(long widget);
 static private native int widget_index_of(long widget);
@@ -1613,19 +1768,24 @@ static private native int widget_close_window_force(long widget);
 static private native int widget_back(long widget);
 static private native int widget_back_to_home(long widget);
 static private native int widget_move(long widget, int x, int y);
+static private native int widget_move_to_center(long widget);
 static private native int widget_resize(long widget, int w, int h);
 static private native int widget_move_resize(long widget, int x, int y, int w, int h);
-static private native int widget_set_value(long widget, int value);
-static private native int widget_animate_value_to(long widget, int value, int duration);
-static private native int widget_add_value(long widget, int delta);
+static private native double widget_get_value(long widget);
+static private native int widget_set_value(long widget, double value);
+static private native int widget_add_value(long widget, double delta);
+static private native int widget_get_value_int(long widget);
+static private native int widget_set_value_int(long widget, int value);
+static private native int widget_add_value_int(long widget, int delta);
+static private native int widget_animate_value_to(long widget, double value, int duration);
 static private native boolean widget_is_style_exist(long widget, String style_name, String state_name);
 static private native int widget_use_style(long widget, String style);
 static private native int widget_set_text_utf8(long widget, String text);
+static private native int widget_set_text_utf8_ex(long widget, String text, boolean check_diff);
 static private native int widget_set_child_text_utf8(long widget, String name, String text);
 static private native int widget_set_child_text_with_double(long widget, String name, String format, double value);
 static private native int widget_set_child_text_with_int(long widget, String name, String format, int value);
 static private native int widget_set_tr_text(long widget, String text);
-static private native int widget_get_value(long widget);
 static private native boolean widget_get_enable(long widget);
 static private native boolean widget_get_floating(long widget);
 static private native boolean widget_get_auto_adjust_size(long widget);
@@ -1637,6 +1797,7 @@ static private native boolean widget_get_feedback(long widget);
 static private native long widget_get_text(long widget);
 static private native int widget_set_name(long widget, String name);
 static private native int widget_set_theme(long widget, String name);
+static private native String widget_get_theme_name(long widget);
 static private native int widget_set_pointer_cursor(long widget, String cursor);
 static private native int widget_set_animation(long widget, String animation);
 static private native int widget_create_animator(long widget, String animation);
@@ -1668,10 +1829,13 @@ static private native int widget_set_sensitive(long widget, boolean sensitive);
 static private native int widget_on(long widget, int type, TOnEvent on_event, long ctx);
 static private native int widget_off(long widget, int id);
 static private native int widget_invalidate_force(long widget, long r);
+static private native int widget_set_props(long widget, String params);
 static private native int widget_set_prop_str(long widget, String name, String v);
 static private native String widget_get_prop_str(long widget, String name, String defval);
 static private native int widget_set_prop_pointer(long widget, String name, long v);
 static private native long widget_get_prop_pointer(long widget, String name);
+static private native int widget_set_prop_float(long widget, String name, double v);
+static private native double widget_get_prop_float(long widget, String name, double defval);
 static private native int widget_set_prop_int(long widget, String name, int v);
 static private native int widget_get_prop_int(long widget, String name, int defval);
 static private native int widget_set_prop_bool(long widget, String name, boolean v);
@@ -1720,6 +1884,7 @@ static private native int widget_set_self_layout_params(long widget, String x, S
 static private native int widget_set_style_int(long widget, String state_and_name, int value);
 static private native int widget_set_style_str(long widget, String state_and_name, String value);
 static private native int widget_set_style_color(long widget, String state_and_name, int value);
+static private native int widget_add_child_default(long widget, long child);
 static private native int widget_t_get_prop_x(long nativeObj);
 static private native int widget_t_get_prop_y(long nativeObj);
 static private native int widget_t_get_prop_w(long nativeObj);
@@ -1737,6 +1902,7 @@ static private native boolean widget_t_get_prop_focusable(long nativeObj);
 static private native boolean widget_t_get_prop_with_focus_state(long nativeObj);
 static private native boolean widget_t_get_prop_auto_adjust_size(long nativeObj);
 static private native boolean widget_t_get_prop_floating(long nativeObj);
+static private native int widget_t_get_prop_opacity(long nativeObj);
 static private native int widget_t_get_prop_dirty_rect_tolerance(long nativeObj);
 static private native long widget_t_get_prop_parent(long nativeObj);
 };
